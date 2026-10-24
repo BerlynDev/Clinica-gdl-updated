@@ -2,20 +2,27 @@
 import { navLinks } from "../data/navigation.ts";
 ---
 
-<header class="px-6 py-6 border-b">
-    <div class="flex justify-between items-center">  
-        <a href="#inicio" class="text-xl font-bold text-brand-600">Clínica de Fracturas y Lesiones</a>
-        
+<header class="px-6 py-6 border-b border-slate-200">
+    <div class="flex justify-between items-center">
+        <a href="#inicio" class="text-xl font-bold text-brand-600"
+            >Clínica de Fracturas y Lesiones</a
+        >
+
         <nav aria-label="Principal" class="hidden md:flex">
             {/* Menú escritorio */}
             <ul class="flex gap-6">
-                {navLinks.map((link) => (
-                    <li>
-                        <a href={link.href}>
-                            {link.label}
-                        </a>
-                    </li>
-                ))}
+                {
+                    navLinks.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                class="hover:text-brand-700 transition-colors"
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    ))
+                }
             </ul>
         </nav>
 
@@ -23,26 +30,36 @@ import { navLinks } from "../data/navigation.ts";
             type="button"
             id="menu-button"
             class="md:hidden p-2 rounded-md text-brand-600 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-brand-600"
-            aria-label="Abrir menú"
+            aria-label="Menú"
             aria-expanded="false"
             aria-controls="mobile-menu"
         >
-            <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <path d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+            >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
         </button>
     </div>
 
-    <nav aria-label="Menú Movil" id="mobile-menu" class="hidden md:hidden">
+    <nav aria-label="Menú móvil" id="mobile-menu" class="hidden md:hidden">
         {/* menu movil */}
         <ul>
-            {navLinks.map((link) => (
-                <li>
-                    <a href={link.href}>
-                        {link.label}
-                    </a>
-                </li>
-            ))}
+            {
+                navLinks.map((link) => (
+                    <li>
+                        <a href={link.href} class="block py-3">
+                            {link.label}
+                        </a>
+                    </li>
+                ))
+            }
         </ul>
     </nav>
 </header>
@@ -55,6 +72,14 @@ import { navLinks } from "../data/navigation.ts";
         button.addEventListener("click", () => {
             const isCollapsed = mobileMenu.classList.toggle("hidden");
             button.setAttribute("aria-expanded", String(!isCollapsed));
+        });
+
+        const links = mobileMenu.querySelectorAll("a");
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                button.setAttribute("aria-expanded", "false");
+            });
         });
     }
 </script>
