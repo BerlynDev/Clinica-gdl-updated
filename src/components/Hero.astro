@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import heroImg from "../assets/hero.jpg";
+import { site } from "../data/site";
+---
+
+<section
+    id="inicio"
+    class="grid
+    md:grid-cols-2
+    gap-8
+    md:gap-12
+    items-center
+    px-6
+    py-12
+    md:py-24
+    bg-gray-50"
+>
+    <div>
+        <h1 class="text-brand-600 text-4xl font-bold md:text-5xl mb-4">
+            {site.name}
+        </h1>
+        <p class="text-lg text-gray-700">
+            {site.tagline}
+        </p>
+        <a
+            href="#contacto"
+            class="mt-4 inline-block bg-brand-700 text-white px-6 py-3 rounded-md hover:bg-brand-900 transition-colors focus-visible:outline-2 focus-visible:outline-brand-700"
+        >
+            Agenda tu cita
+        </a>
+    </div>
+
+    <Image
+        src={heroImg}
+        alt="Radiografía de un pie en una pantalla"
+        sizes="(min-width: 768px) 50vw, 100vw"
+        widths={[400, 800, 1200]}
+        loading="eager"
+        fetchpriority="high"
+        class="w-full h-96 object-cover rounded-lg"
+    />
+</section>

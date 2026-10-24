@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import { site } from "../data/site";
+import Hero from "../components/Hero.astro";
 ---
 
-<BaseLayout 
-	title="Clínica de Fracturas y Lesiones | Traumatología y Ortopedia" 
-	description="Especialistas en traumatología y ortopedia: atención de fracturas, cirugía traumatológica, infiltraciones, férulas, yesos y urgencias. Agenda tu consulta."
+<BaseLayout
+	title={`${site.name} | Traumatología y fracturas en ${site.city}`}
+	description={site.description}
 >
-
 	<Header slot="header" />
-	<h1 class="text-brand-600 text-4xl font-bold"> Clínica de Fracturas y Lesiones</h1>
+	<Hero />
 </BaseLayout>
